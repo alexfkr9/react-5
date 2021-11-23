@@ -26,21 +26,38 @@ function App() {
     const apiUrl = 'https://yalantis-react-school-api.yalantis.com/api/task0/users';
     axios.get(apiUrl).then((resp) => {            
       setBirthdayState(resp.data);
-      const employees = resp.data || appState;
+      const employees = resp.data || appState;      
+
       const employeesSort = [...employees].sort((a, b) => a.lastName.localeCompare(b.lastName));
-      
       employeesSort.map((employe) => employe.active = 'no' );
+      
       setAppState(employeesSort);  
     });
   }, [setAppState]);
 
- 
-  
-    const [activeState, setActiveState] = useState();
-    
-    const [styleState, setStyleState] = useState();
+    console.log(appState)
 
-               
+    
+    let data = appState.reduce((r, e) => {
+ 
+  // get first letter of name of current element
+  let alphabet = e.lastName[0];
+ 
+  // if there is no property in accumulator with this letter create it
+  if (!r[alphabet]) r[alphabet] = { alphabet, record: [e] }
+ 
+  // if there is push current element to children array for that letter
+  else r[alphabet].record.push(e);
+ 
+  // return accumulator
+  return r;
+}, {});
+ 
+let result = Object.values(data);
+console.log(result);
+
+
+                   
     if (!appState || appState.length === 0) return <p>Нет данных.</p>
   
     const alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
