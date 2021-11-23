@@ -74,48 +74,64 @@ console.log(result);
                       
     };
 
-  return (
-    <div className='app'>   	
-    	<div className='employees'>
-        Employees
-                <ul>
-                    {
-                        appState.map((employe) =>
-                            <li key={employe.id} >
-                                A                            
-                                <h4 className={employe.active === 'yes' ? 'active' : ''}>
-                                {employe.firstName} 
-                                {employe.lastName}
-                                </h4>                                
-                            
-                            <form>   
-                                <label>
-                                    <input                                        
-                                        type="radio" 
-                                        name="choice"
-                                        value='no' 
-                                        checked={employe.active === 'no'}                                        
-                                        onChange={(e) => update(employe.id, e)}
-                                    /> not active
-                                </label>
-                                <br />
-                                <label>
-                                    <input 
-                                        type="radio" 
-                                        name="choice"
-                                        value='yes'                                        
-                                        checked={employe.active === 'yes'}
-                                        onChange={(e) => update(employe.id, e)}
-                                    /> active
-                                </label>
-                            </form>                                                              
-                             <br />                            
-                            </li>
-                        )
-                    }
-                </ul>
-      </div>
+    const Employees = (props) => (
+                    <ul>
+                        {
+                            props.data.map((employe) =>
+                                <li key={employe.id} >
+                                                                
+                                    <h4 className={employe.active === 'yes' ? 'active' : ''}>
+                                    {employe.firstName} 
+                                    {employe.lastName}
+                                    </h4>                                
+                                
+                                <form>   
+                                    <label>
+                                        <input                                        
+                                            type="radio" 
+                                            name="choice"
+                                            value='no' 
+                                            checked={employe.active === 'no'}                                        
+                                            onChange={(e) => update(employe.id, e)}
+                                        /> not active
+                                    </label>
+                                    <br />
+                                    <label>
+                                        <input 
+                                            type="radio" 
+                                            name="choice"
+                                            value='yes'                                        
+                                            checked={employe.active === 'yes'}
+                                            onChange={(e) => update(employe.id, e)}
+                                        /> active
+                                    </label>
+                                </form>                                                              
+                                 <br />                            
+                                </li>
+                            )
+                        }
+                    </ul>
+    )
 
+  return (
+    <div className='app'>
+        
+            {
+            result.map((item) =>
+                <div className='result'>
+                    <p key={item.alphabet} >
+                    { item.alphabet }
+                    </p>
+
+                    <Employees data={item.record} />
+                </div>
+                
+            )}
+            
+        	<div className='employees'>
+                    
+            </div>
+        
         
     </div>
   );
