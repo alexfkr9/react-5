@@ -1,0 +1,21 @@
+
+.app {
+	display: flex;
+}
+
+.employees {
+	margin-left: 20px;
+}
+
+
+.employeesBirthday {
+	margin-left: 100px;
+}
+
+.active {
+	color: #0000FF;
+}
+
+.not-active {
+	color: black;
+}
